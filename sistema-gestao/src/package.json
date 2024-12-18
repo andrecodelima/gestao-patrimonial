@@ -1,0 +1,44 @@
+{
+  "name": "rdip-2",
+  "version": "1.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ],
+    "branch": "main"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^7.1.0",
+    "semantic-release": "^24.1.0"
+  },
+  "dependencies": {
+    "commitizen": "^4.3.0",
+    "express": "^4.19.2"
+  },
+  "scripts": {
+    "build": "tsc",
+    "cmt": "cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  }
+}
