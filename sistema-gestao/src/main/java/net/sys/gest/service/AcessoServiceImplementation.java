@@ -40,8 +40,6 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 		return false;
 	}
 
-	
-
 	@Override
 	public Acesso findAcessoById(Long id) {
 		Optional<Acesso> temp = acessoRepository.findById(id);
@@ -52,11 +50,19 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 		return temp.get();
 	}
 
-
 	@Override
 	public Acesso editAcesso(Acesso acesso) {
+		 Optional<Acesso> temp = acessoRepository.findById(acesso.getId());
+		 if(temp.isPresent()) {
+			 Acesso acessoExistente = temp.get();
+			 acessoExistente.setDescricao(acesso.getDescricao());
+			 return acessoRepository.save(acessoExistente);
 		 
-		return null;
+		 }else if(temp.isEmpty()) {
+			 throw new NoSuchElementException("Acesso não encontrado" + acesso.getId());
+		 }
+		 
+		 return null;
 	}
 
 

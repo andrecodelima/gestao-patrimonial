@@ -23,6 +23,7 @@ public class WebConfigSecurity {
 	            .requestMatchers(HttpMethod.POST, "/saveAcesso").permitAll() // Permite acesso sem autenticação
 	            .requestMatchers(HttpMethod.GET, "/acessos", "/getAllAcessos","/findAcessoById/**").permitAll() // Permite acesso sem autenticação
 	            .requestMatchers(HttpMethod.DELETE, "/acessos", "/deleteAcesso/**").permitAll() // Permite acesso sem autenticação
+	            .requestMatchers(HttpMethod.PUT, "/editAcesso/**").permitAll() // Permite acesso sem autenticação
 	            .anyRequest().authenticated() // Exige autenticação para outras URLs
 	        )
 	        
