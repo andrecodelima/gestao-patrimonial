@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import net.sys.gest.model.Acesso;
@@ -46,6 +47,27 @@ public class AcessoController {
 		}
 		
 	}
+	
+	
+	@PutMapping(value="/editAcesso/{id}")
+	public ResponseEntity<?>editAcesso(@PathVariable Long id, @RequestBody Acesso acesso){ 
+		try {
+			
+			acesso.setId(id);
+			
+			Acesso updateAcesso = acessoServiceInterface.editAcesso(acesso);
+			
+			if(updateAcesso == null) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Acesso com ID " + id + "não encotrado" );
+			}
+			
+			return ResponseEntity.ok(updateAcesso); 
+					
+		}catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro interno, " + e.getMessage());
+		}
+	}
+	
 	
 	@GetMapping(value="/getAllAcessos")
 	public ResponseEntity<Collection<Acesso>> getAllAcesso(){
@@ -119,7 +141,7 @@ public class AcessoController {
 	
 	}
 	
-	
+		
 		
 	
 
