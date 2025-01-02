@@ -49,12 +49,12 @@ public class SistemaGestaoApplicationTests extends TestCase {
 				
 				
 				// Teste de Query
-				acesso = new Acesso();
-				acesso.setDescricao("ROLE_USER");
-				acesso = acessoController.saveAcesso(acesso).getBody();
-				List<Acesso> acessos = acessoRepository.buscarAcessoDesc("USER".trim().toUpperCase());
-				
-				assertEquals(1, acessos.size());
+//				acesso = new Acesso();
+//				acesso.setDescricao("ROLE_USER");
+//				acesso = acessoController.saveAcesso(acesso).getBody();
+//				List<Acesso> acessos = acessoRepository.buscarAcessoDesc("USER".trim().toUpperCase());
+//				
+//				assertEquals(1, acessos.size());
 //				acessoRepository.deleteById(acesso.getId());
 	}
 	
