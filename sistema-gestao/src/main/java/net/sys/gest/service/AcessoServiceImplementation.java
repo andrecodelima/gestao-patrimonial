@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
@@ -54,15 +55,15 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 
 	@Override
 	public Acesso editAcesso(Acesso acesso) {
-		// TODO Auto-generated method stub
+		 
 		return null;
 	}
 
 
 	@Override
 	public Collection<Acesso> getAllAcesso() {
-		// TODO Auto-generated method stub
-		return null;
+		 
+		return acessoRepository.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
 	}
 	
 	

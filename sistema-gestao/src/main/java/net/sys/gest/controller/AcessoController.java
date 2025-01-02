@@ -1,5 +1,6 @@
 package net.sys.gest.controller;
 
+import java.util.Collection;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +24,10 @@ public class AcessoController {
 	@Autowired
 	private AcessoServiceInterface acessoServiceInterface;
 
-	@Autowired
-	private AcessoRepository acessoRepository;
-
-	
 	@GetMapping("/")
 	public String teste() {
-		
 		return "/index";
 	}
-	
-	
-	
 	
 	 
 	@PostMapping(value="/saveAcesso")
@@ -52,6 +45,11 @@ public class AcessoController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 		
+	}
+	
+	@GetMapping(value="/getAllAcessos")
+	public ResponseEntity<Collection<Acesso>> getAllAcesso(){
+		return ResponseEntity.ok(acessoServiceInterface.getAllAcesso());
 	}
 	
 	

@@ -21,7 +21,7 @@ public class WebConfigSecurity {
 	        	
 	        	.requestMatchers("/h2-console/**").permitAll()
 	            .requestMatchers(HttpMethod.POST, "/saveAcesso").permitAll() // Permite acesso sem autenticação
-	            .requestMatchers(HttpMethod.GET, "/acessos", "/findAcessoById/**").permitAll() // Permite acesso sem autenticação
+	            .requestMatchers(HttpMethod.GET, "/acessos", "/getAllAcessos","/findAcessoById/**").permitAll() // Permite acesso sem autenticação
 	            .requestMatchers(HttpMethod.DELETE, "/acessos", "/deleteAcesso/**").permitAll() // Permite acesso sem autenticação
 	            .anyRequest().authenticated() // Exige autenticação para outras URLs
 	        )
