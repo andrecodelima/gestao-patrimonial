@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-// import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { CadastroAcessoComponent } from './components/cadastro-acesso/cadastro-acesso.component';
 
 @Component({
   selector: 'app-root',
-  imports: [CadastroAcessoComponent],
+  standalone: true,
+  imports: [CadastroAcessoComponent, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'], // Corrigido
 })
 export class AppComponent {
   title = 'gestao-patrimonio';
