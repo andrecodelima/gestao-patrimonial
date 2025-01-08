@@ -29,7 +29,7 @@ public class WebConfigSecurity {
 		     .httpBasic(httpBasic -> httpBasic.disable()) // Desabilita autenticação HTTP básica
 		     .formLogin(form -> form.disable()) // Desativa formulário de login
 		     .csrf(csrf -> csrf
-		         .ignoringRequestMatchers("/h2-console/**", "/saveAcesso", "/editAcesso/**") // Desativa CSRF para o H2 Console
+		         .ignoringRequestMatchers("/h2-console/**", "/saveAcesso", "/editAcesso/**", "/deleteAcesso/**") // Desativa CSRF para o H2 Console
 		     )
 		     .headers(headers -> headers
 		         .frameOptions(frameOptions -> frameOptions.sameOrigin()) // Permite exibição de frames do H2 Console

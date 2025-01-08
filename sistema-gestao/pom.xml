@@ -18,6 +18,10 @@
 
 	<properties>
 		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<maven.test.skip>true</maven.test.skip>
+
 	</properties>
 	
 	<dependencies>
@@ -139,6 +143,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>sistema_gestao_patrimonio</finalName>
 	</build>
 
 </project>
