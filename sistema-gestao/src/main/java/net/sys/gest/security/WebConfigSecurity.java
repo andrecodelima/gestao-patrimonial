@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -20,6 +21,8 @@ public class WebConfigSecurity {
 		     .authorizeHttpRequests(auth -> auth
 		         .requestMatchers("/h2-console/**").permitAll() // Permite acesso ao H2 Console
 		         .requestMatchers(HttpMethod.POST, "/saveAcesso").permitAll() // Permite acesso sem autenticação
+		         .requestMatchers(HttpMethod.POST, "/usuarios/login", "/usuarios/insertUsuarios").permitAll() // Permite acesso sem autenticação
+		         
 		         .requestMatchers(HttpMethod.GET, "/acessos", "/getAllAcessos", "/findAcessoById/**").permitAll() // Permite acesso sem autenticação
 		         .requestMatchers(HttpMethod.DELETE, "/acessos", "/deleteAcesso/**").permitAll() // Permite acesso sem autenticação
 		         .requestMatchers(HttpMethod.PUT, "/editAcesso/**").permitAll() // Permite acesso sem autenticação
@@ -29,7 +32,7 @@ public class WebConfigSecurity {
 		     .httpBasic(httpBasic -> httpBasic.disable()) // Desabilita autenticação HTTP básica
 		     .formLogin(form -> form.disable()) // Desativa formulário de login
 		     .csrf(csrf -> csrf
-		         .ignoringRequestMatchers("/h2-console/**", "/saveAcesso", "/editAcesso/**", "/deleteAcesso/**") // Desativa CSRF para o H2 Console
+		         .ignoringRequestMatchers("/h2-console/**", "/saveAcesso", "/editAcesso/**", "/deleteAcesso/**","/usuarios/insertUsuarios" ) // Desativa CSRF para o H2 Console
 		     )
 		     .headers(headers -> headers
 		         .frameOptions(frameOptions -> frameOptions.sameOrigin()) // Permite exibição de frames do H2 Console
@@ -38,7 +41,11 @@ public class WebConfigSecurity {
 	 return http.build();	
 	}
 	
-
+	
+    @Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	
 }
