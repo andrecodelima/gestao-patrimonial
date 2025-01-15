@@ -2,18 +2,27 @@
 <main>
 
     <h2>Login do Sistema</h2>
-    <form class="row g-3">
+    <form class="row g-3 d-flex flex-column" [formGroup]="loginForm">
         <div class="col-md-6">
-          <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4">
+          <label for="inputEmail4" class="form-label">User</label>
+          <input type="email" class="form-control" id="inputEmail4" formControlName="login">
+          <!-- <span>{{loginForm.status}}</span> -->
+        
+          <div *ngIf="loginForm.get('login')?.errors" style="font-size: 8px; color: red;">Login obrigatório</div>
         </div>
+        
+
         <div class="col-md-6">
           <label for="inputPassword4" class="form-label">Password</label>
-          <input type="password" class="form-control" id="inputPassword4">
+          <input type="password" class="form-control" id="inputPassword4" formControlName="senha">
+          <!-- <span>{{loginForm.status}}</span> -->
+          <div *ngIf="loginForm.get('login')?.errors" style="font-size: 8px; color: red;">Login obrigatório</div>
+
         </div>
          
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Login</button>
+        <div class="col-6">
+          <button type="submit" class="btn btn-primary" (click)="fazerLogin()" [disabled]="!loginForm.valid">Login</button>
+          <button type="submit" class="btn btn-primary mx-3">Recuperar</button>
         </div>
       </form>
       
