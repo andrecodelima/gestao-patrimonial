@@ -10,7 +10,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import java.util.List;
 
 @Configuration
-public class WebConfigSecurity {
+public class WebConfigSecurity3 {
 	
 // CONFIGURAÇÃO DO JWT ADIADA
 	

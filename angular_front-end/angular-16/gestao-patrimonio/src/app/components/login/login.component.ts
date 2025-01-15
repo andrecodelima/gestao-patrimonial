@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from 'src/app/model/usuario';
+import { LoginService} from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { Usuario } from 'src/app/model/usuario';
 })
 export class LoginComponent {
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder, private loginService: LoginService){
 
   }
 
@@ -31,6 +32,9 @@ export class LoginComponent {
 
   fazerLogin(){
     const usuario = this.loginObjeto();
+
+    this.loginService.logar(usuario);
+    
     console.info('dados de login ->' + usuario.login);
     console.info('dados de login ->' + usuario.senha);
 

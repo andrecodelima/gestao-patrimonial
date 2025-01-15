@@ -1,5 +1,8 @@
 package net.sys.gest.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -26,19 +29,21 @@ public class UsuarioController {
 	private UsuarioServiceInterface usuarioServiceInterface;
 	
 	@PostMapping("/login")
-	public ResponseEntity<?>login(@RequestBody LoginRequest loginRequest){
-		
-		try {
-			 Usuario usuario = usuarioServiceInterface.autenticaUsuario(loginRequest.getLogin(), loginRequest.getSenha());
-			 return ResponseEntity.ok("Login realizado com sucesso para o usuário: " + usuario.getLogin() );
-			 
-		}catch (UsernameNotFoundException e) {
-			 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario não encontrado");
-		
-		}catch(RuntimeException e) {
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
-		}
+	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+	    try {
+	        Usuario usuario = usuarioServiceInterface.autenticaUsuario(loginRequest.getLogin(), loginRequest.getSenha());
+	        // Retorne um objeto JSON em vez de uma string simples
+	        Map<String, String> response = new HashMap<>();
+	        response.put("message", "Login realizado com sucesso para o usuário: " + usuario.getLogin());
+	        return ResponseEntity.ok(response);
+	        
+	    } catch (UsernameNotFoundException e) {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", "Usuario não encontrado"));
+	    } catch (RuntimeException e) {
+	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", e.getMessage()));
+	    }
 	}
+
 
 	@PostMapping("/insertUsuarios")
 	public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario){
