@@ -34,9 +34,6 @@ public class AcessoController {
 	@PostMapping(value="/saveAcesso")
 	public ResponseEntity<Acesso> saveAcesso(@Validated  @RequestBody Acesso acesso){
 		
-//		Acesso acessoSalvo = acessoServiceInterface.saveAcesso(acesso);
-//		return ResponseEntity.status(HttpStatus.CREATED).body(acessoSalvo);
-		
 		try {
 		    System.out.println("Payload recebido: " + acesso);
 			Acesso acessoSalvo = acessoServiceInterface.saveAcesso(acesso);
