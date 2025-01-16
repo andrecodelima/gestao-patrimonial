@@ -43,6 +43,16 @@ public class Usuario implements UserDetails {
 	@Column(name="data_atual_senha")
 	private LocalDate dataAtualSenha;
 	
+	@Column(name="data_criacao")
+	private LocalDate dataCriacao;
+	
+	@Column(name="data_modificacao")
+	private LocalDate dataModificacao;
+	
+	@Column(name="status")
+	private boolean status = false;
+	
+	
 
 	@OneToMany(fetch = FetchType.LAZY) // vai carregar os acessos apenas quando precisar.
 	@JoinTable(name="usuarios_acesso", 
@@ -68,6 +78,71 @@ public class Usuario implements UserDetails {
 	@Override
 	public String getUsername() {
 		return this.login;
+	}
+		
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public LocalDate getDataAtualSenha() {
+		return dataAtualSenha;
+	}
+
+	public void setDataAtualSenha(LocalDate dataAtualSenha) {
+		this.dataAtualSenha = dataAtualSenha;
+	}
+
+	public LocalDate getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(LocalDate dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public LocalDate getDataModificacao() {
+		return dataModificacao;
+	}
+
+	public void setDataModificacao(LocalDate dataModificacao) {
+		this.dataModificacao = dataModificacao;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
+	public List<Acesso> getAcessos() {
+		return acessos;
+	}
+
+	public void setAcessos(List<Acesso> acessos) {
+		this.acessos = acessos;
 	}
 
 	@Override
