@@ -30,18 +30,18 @@ public class WebConfigSecurity {
 		     }))
 	 		.csrf(csrf -> csrf.disable()) // Desativa CSRF globalmente
 		     .authorizeHttpRequests(auth -> auth
-		         .requestMatchers("/h2-console/**").permitAll() // Permite acesso ao H2 Console
-		         .requestMatchers(HttpMethod.POST, "/saveAcesso").permitAll() // Permite acesso sem autenticação
-		         .requestMatchers(HttpMethod.POST, "/usuarios/login", "/usuarios/insertUsuarios", " /usuarios/login").permitAll() // Permite acesso sem autenticação
+		         .requestMatchers("/h2-console/**").permitAll()  
+		         .requestMatchers(HttpMethod.POST, "/saveAcesso").permitAll()  
+		         .requestMatchers(HttpMethod.POST, "/usuarios/login", "/usuarios/insertUsuarios", " /usuarios/login").permitAll()  
 		         
-		         .requestMatchers(HttpMethod.GET, "/acessos", "/getAllAcessos", "/findAcessoById/**").permitAll() // Permite acesso sem autenticação
-		         .requestMatchers(HttpMethod.DELETE, "/acessos", "/deleteAcesso/**").permitAll() // Permite acesso sem autenticação
-		         .requestMatchers(HttpMethod.PUT, "/editAcesso/**").permitAll() // Permite acesso sem autenticação
-		         .requestMatchers("/api/**").permitAll() // Permite requisições para a API sem autenticação
-		         .anyRequest().authenticated() // Exige autenticação para outras URLs
+		         .requestMatchers(HttpMethod.GET, "/acessos", "/getAllAcessos", "/findAcessoById/**").permitAll()  
+		         .requestMatchers(HttpMethod.DELETE, "/acessos", "/deleteAcesso/**").permitAll() 
+		         .requestMatchers(HttpMethod.PUT, "/editAcesso/**").permitAll()  
+		         .requestMatchers("/api/**").permitAll()  
+		         .anyRequest().authenticated()  
 		     )
-		     .httpBasic(httpBasic -> httpBasic.disable()) // Desabilita autenticação HTTP básica
-		     .formLogin(form -> form.disable()) // Desativa formulário de login
+		     .httpBasic(httpBasic -> httpBasic.disable())  
+		     .formLogin(form -> form.disable())  
 		     .csrf(csrf -> csrf
 		         .ignoringRequestMatchers("/h2-console/**", "/saveAcesso", "/editAcesso/**", "/deleteAcesso/**","/usuarios/insertUsuarios",  "/usuarios/login" ) // Desativa CSRF para o H2 Console
 		     )
