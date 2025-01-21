@@ -1,5 +1,8 @@
 package net.sys.gest.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,10 +17,17 @@ public class UsuarioServiceImplementation implements UsuarioServiceInterface {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
+	LocalDateTime dataAtual = LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+	String dataFormatada = dataAtual.format(formatter);
+	
+	LocalDateTime dataConvertida = LocalDateTime.parse(dataFormatada, formatter);
+
+	
 	@Override
 	public Usuario saveUsuario(Usuario usuario) {
 		 usuario.setSenha(new BCryptPasswordEncoder().encode(usuario.getSenha()));
-		 usuario.setDataCriacao(java.time.LocalDate.now());
+		 usuario.setDataCriacao(dataConvertida);
 		return usuarioRepository.save(usuario);
 	}
 

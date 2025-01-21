@@ -1,12 +1,13 @@
 package net.sys.gest.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +22,16 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 	@Autowired
 	private AcessoRepository acessoRepository;
 	
-	
+	LocalDateTime dataAtual = LocalDateTime.now();
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+ 	String dataFormatada = dataAtual.format(formatter);
+ 	
+	LocalDateTime dataConvertida = LocalDateTime.parse(dataFormatada, formatter);
+ 	
 	@Override
 	public Acesso saveAcesso(Acesso acesso) {
 		
+		acesso.setDataCriacao(dataConvertida);
 		return acessoRepository.save(acesso);
 	}
 
@@ -56,6 +63,9 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 		 if(temp.isPresent()) {
 			 Acesso acessoExistente = temp.get();
 			 acessoExistente.setDescricao(acesso.getDescricao());
+			 acessoExistente.setDataModificacao(dataConvertida.now());
+			 
+			 acesso.setDataModificacao(dataConvertida.now());
 			 return acessoRepository.save(acessoExistente);
 		 
 		 }else if(temp.isEmpty()) {
@@ -68,7 +78,6 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 
 	@Override
 	public Collection<Acesso> getAllAcesso() {
-		 
 		return acessoRepository.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
 	}
 	

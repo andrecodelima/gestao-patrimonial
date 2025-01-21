@@ -13,9 +13,14 @@ public class PublicEndpointsConfig {
             .requestMatchers("/h2-console/**").permitAll()
             .requestMatchers(HttpMethod.POST, "/saveAcesso").permitAll()
             .requestMatchers(HttpMethod.POST, "/usuarios/login", "/usuarios/insertUsuarios").permitAll()
-            .requestMatchers(HttpMethod.GET, "/acessos", "/getAllAcessos", "/findAcessoById/**").permitAll()
+            .requestMatchers(HttpMethod.POST, "/empresa/insertEmpresa").permitAll()
+            
+            .requestMatchers(HttpMethod.GET, "/acessos", "/getAllAcessos", "/findAcessoById/**", "/empresa/getAllEmpresa").permitAll()
+            
             .requestMatchers(HttpMethod.DELETE, "/deleteAcesso/**").permitAll()
+            
             .requestMatchers(HttpMethod.PUT, "/editAcesso/**").permitAll()
+            
             .requestMatchers("/api/**").permitAll()
             .anyRequest().authenticated();
     }
@@ -27,7 +32,8 @@ public class PublicEndpointsConfig {
             "/editAcesso/**", 
             "/deleteAcesso/**", 
             "/usuarios/insertUsuarios",  
-            "/usuarios/login"
+            "/usuarios/login",
+            "/empresa/insertEmpresa"
         };
     }
 }
