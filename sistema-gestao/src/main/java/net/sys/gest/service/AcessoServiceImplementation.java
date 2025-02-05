@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import jakarta.transaction.Transactional;
 import net.sys.gest.model.Acesso;
 import net.sys.gest.repository.AcessoRepository;
+import net.sys.gest.utils.DateUtils;
 
 @Service
 @Transactional
@@ -22,17 +23,17 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 	@Autowired
 	private AcessoRepository acessoRepository;
 	
-	LocalDateTime dataAtual = LocalDateTime.now();
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
- 	String dataFormatada = dataAtual.format(formatter);
- 	
-	LocalDateTime dataConvertida = LocalDateTime.parse(dataFormatada, formatter);
- 	
+	
+	LocalDateTime dataAtual = DateUtils.getCurrentDateTime();
+	String dataFormatada = DateUtils.format(dataAtual);
+	LocalDateTime dataConvertida = DateUtils.parse(dataFormatada);
+
+	
 	@Override
 	public Acesso saveAcesso(Acesso acesso) {
 		
 		acesso.setDataCriacao(dataConvertida);
-		return acessoRepository.save(acesso);
+ 		return acessoRepository.save(acesso);
 	}
 
 
@@ -82,21 +83,5 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 	}
 	
 	
-	// Teste de Inserir
-/*	@EventListener(ApplicationReadyEvent.class)
-	 public void testarSalvarAcesso() {
-		 Acesso acesso = new Acesso();
-		 acesso.setDescricao("Teste Acesso");
-		 
-		 try {
-			 Acesso acessoSalvo = this.saveAcesso(acesso);
-			 System.out.println("Registro salvo com sucesso: "  + acessoSalvo);
-		 }catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Erro ao salvar registro");
-		}
-	 
-	 }
-*/
 	
 }
