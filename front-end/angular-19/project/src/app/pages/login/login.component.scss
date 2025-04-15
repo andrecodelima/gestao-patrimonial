@@ -1,36 +1,62 @@
 @use "../../styles/variables.scss" as *;
 
-.login{
-    background-color: #D9D9D9;
+.container{
+    // border: 2px solid blue;
     width: 100%;
-    height: 100vh;
-    display: flex;
+    height: 100%;
+    display: flex;  
     justify-content: center;
-    
-    .section-main{
-        background-color: #fff;
-        margin-top: 2%;
-        margin-bottom: 2%;
-        width: 95%;
-        border-radius: 6px;
-        display: flex;
+    align-items: center;
  
-        &__login{
-            // border: 2px solid red;
-            width: 70%;
-            height: 100%;
+    .section-login{
+        width: 35%;
+        // height: 60%;
+        // border: 2px solid;
+
+        &__title{
+            // border: 2px solid;
+            display: flex;
+            justify-content: center;
+            color: $first-color;
+            margin-bottom: 10%;
+            text-transform: uppercase;
+
+            h2{
+                font-size: 2.3rem;
+                font-weight: 700;
+            }
         }
 
-        &__sign{
-            background-color:$first-color;
-            width: 30%;
-            height: 100%;
+        .link-section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+           
+            span{
+                text-decoration: underline;
+                font-weight: 600;
+                margin-top: 7%;
+                margin-bottom: 7%;
+                cursor: pointer;
+            }
+
+            button{
+                width: 35%;
+                border-radius: 30px;
+                background-color: $first-color;
+                border: 2px solid $second-color;
+                font-weight: 600;
+                font-size: 1.4rem;
+                cursor: pointer;
+            }
 
         }
 
+       
+
+    
     }
 }
-
-
 
  

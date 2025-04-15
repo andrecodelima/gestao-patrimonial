@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DefaultLoginComponent } from './default-login.component';
+import { SingupLayoutComponent } from './singup-layout.component';
 
-describe('DefaultLoginComponent', () => {
-  let component: DefaultLoginComponent;
-  let fixture: ComponentFixture<DefaultLoginComponent>;
+describe('SingupLayoutComponent', () => {
+  let component: SingupLayoutComponent;
+  let fixture: ComponentFixture<SingupLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DefaultLoginComponent]
+      imports: [SingupLayoutComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DefaultLoginComponent);
+    fixture = TestBed.createComponent(SingupLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
