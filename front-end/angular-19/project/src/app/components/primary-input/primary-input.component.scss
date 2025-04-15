@@ -1,0 +1,16 @@
+@use "../../styles/variables.scss" as *;
+
+.section-login{
+    mat-label{
+        font-weight: 500;
+    }
+}
+
+.section-login mat-form-field{
+    // border: 2px solid;
+    width: 100%;
+
+ }
+
+
+ 
