@@ -1,6 +1,7 @@
 package net.sys.gest.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -22,41 +23,41 @@ public class Empresa {
 	private Long id;
 	
 	
-	@Column(name="nome_fantasia", length = 150, nullable = true)
+	@Column(name="nome_fantasia", length = 150)
 	private String nomeFantasia;
 	
-	@Column(name="razao_social", length = 150, nullable = true)
+	@Column(name="razao_social", length = 150)
 	private String razao_social;
 	
-	@Column(name="tipo_ativade", length = 100, nullable = true)
+	@Column(name="tipo_ativade", length = 100)
 	private String tipoAtividade;
 	
-	@Column(name="data_fundacao", nullable = true)
+	@Column(name="data_fundacao")
 	private LocalDate dataFundacao;
 	
-	@Column(name="cnpj", length = 20, nullable = true)
+	@Column(name="cnpj", length = 20)
 	private String cnpj;
 	
-	@Column(name="endereco", length = 150, nullable = true)
+	@Column(name="endereco", length = 150)
 	private String endereco;
 	
-	@Column(name="telefone", length = 15, nullable = true)
+	@Column(name="telefone", length = 15)
 	private String telefone;
 	
-	@Column(name="email", length = 100, nullable = true)
+	@Column(name="email", length = 100)
 	private String email;
 	
-	@Column(name="foto", length = 100, nullable = true)
+	@Column(name="foro", length = 100)
 	private String foro;
 	
-	@Column(name="funesban", length = 100, nullable = true)
+	@Column(name="funesban", length = 100)
 	private String funesban;
 	
-	@Column(name="data_criacao", nullable = true)
-	private LocalDate dataCriacao;
+	@Column(name="data_criacao")
+	private LocalDateTime dataCriacao;
 	
-	@Column(name="data_modificacao", nullable = true)
-	private LocalDate dataModificao;
+	@Column(name="data_modificacao")
+	private LocalDateTime dataModificao;
 
 	public Long getId() {
 		return id;
@@ -148,19 +149,19 @@ public class Empresa {
 		this.funesban = funesban;
 	}
 
-	public LocalDate getDataCriacao() {
+	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
+	public void setDataCriacao(LocalDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public LocalDate getDataModificao() {
+	public LocalDateTime getDataModificao() {
 		return dataModificao;
 	}
 
-	public void setDataModificao(LocalDate dataModificao) {
+	public void setDataModificao(LocalDateTime dataModificao) {
 		this.dataModificao = dataModificao;
 	}
 

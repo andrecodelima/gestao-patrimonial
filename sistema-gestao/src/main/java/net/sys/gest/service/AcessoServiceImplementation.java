@@ -1,18 +1,20 @@
 package net.sys.gest.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import net.sys.gest.model.Acesso;
 import net.sys.gest.repository.AcessoRepository;
+import net.sys.gest.utils.DateUtils;
 
 @Service
 @Transactional
@@ -22,10 +24,16 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 	private AcessoRepository acessoRepository;
 	
 	
+	LocalDateTime dataAtual = DateUtils.getCurrentDateTime();
+	String dataFormatada = DateUtils.format(dataAtual);
+	LocalDateTime dataConvertida = DateUtils.parse(dataFormatada);
+
+	
 	@Override
 	public Acesso saveAcesso(Acesso acesso) {
 		
-		return acessoRepository.save(acesso);
+		acesso.setDataCriacao(dataConvertida);
+ 		return acessoRepository.save(acesso);
 	}
 
 
@@ -56,6 +64,9 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 		 if(temp.isPresent()) {
 			 Acesso acessoExistente = temp.get();
 			 acessoExistente.setDescricao(acesso.getDescricao());
+			 acessoExistente.setDataModificacao(dataConvertida.now());
+			 
+			 acesso.setDataModificacao(dataConvertida.now());
 			 return acessoRepository.save(acessoExistente);
 		 
 		 }else if(temp.isEmpty()) {
@@ -68,26 +79,9 @@ public class AcessoServiceImplementation implements AcessoServiceInterface {
 
 	@Override
 	public Collection<Acesso> getAllAcesso() {
-		 
 		return acessoRepository.findAll(Sort.by(Sort.Direction.ASC, "descricao"));
 	}
 	
 	
-	// Teste de Inserir
-/*	@EventListener(ApplicationReadyEvent.class)
-	 public void testarSalvarAcesso() {
-		 Acesso acesso = new Acesso();
-		 acesso.setDescricao("Teste Acesso");
-		 
-		 try {
-			 Acesso acessoSalvo = this.saveAcesso(acesso);
-			 System.out.println("Registro salvo com sucesso: "  + acessoSalvo);
-		 }catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Erro ao salvar registro");
-		}
-	 
-	 }
-*/
 	
 }

@@ -1,6 +1,7 @@
 package net.sys.gest.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -34,6 +35,12 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_id_seq")
 	private Long id;
 	
+	@Column(name="nome", length = 100)
+	private String nome;
+	
+	@Column(name="cpf", length = 16)
+	private String cpf;
+	
 	@Column(name="login", length = 100, unique = true, nullable = false)
 	private String login;
 	
@@ -44,10 +51,10 @@ public class Usuario implements UserDetails {
 	private LocalDate dataAtualSenha;
 	
 	@Column(name="data_criacao")
-	private LocalDate dataCriacao;
+	private LocalDateTime dataCriacao;
 	
 	@Column(name="data_modificacao")
-	private LocalDate dataModificacao;
+	private LocalDateTime dataModificacao;
 	
 	@Column(name="status")
 	private boolean status = false;
@@ -113,19 +120,19 @@ public class Usuario implements UserDetails {
 		this.dataAtualSenha = dataAtualSenha;
 	}
 
-	public LocalDate getDataCriacao() {
+	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
+	public void setDataCriacao(LocalDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public LocalDate getDataModificacao() {
+	public LocalDateTime getDataModificacao() {
 		return dataModificacao;
 	}
 
-	public void setDataModificacao(LocalDate dataModificacao) {
+	public void setDataModificacao(LocalDateTime dataModificacao) {
 		this.dataModificacao = dataModificacao;
 	}
 
@@ -143,6 +150,24 @@ public class Usuario implements UserDetails {
 
 	public void setAcessos(List<Acesso> acessos) {
 		this.acessos = acessos;
+	}
+	
+	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	@Override

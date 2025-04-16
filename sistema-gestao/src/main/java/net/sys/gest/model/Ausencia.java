@@ -1,6 +1,7 @@
 package net.sys.gest.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -37,10 +38,10 @@ public class Ausencia {
 	private LocalDate dataFim;
 	
 	@Column(name="data_criacao")
-	private LocalDate dataCriacao;
+	private LocalDateTime dataCriacao;
 	
 	@Column(name="data_modificacao")
-	private LocalDate dataModificacao;
+	private LocalDateTime dataModificacao;
 
 	public Long getId() {
 		return id;
@@ -83,19 +84,19 @@ public class Ausencia {
 		this.dataFim = dataFim;
 	}
 
-	public LocalDate getDataCriacao() {
+	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(LocalDate dataCriacao) {
+	public void setDataCriacao(LocalDateTime dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 
-	public LocalDate getDataModificacao() {
+	public LocalDateTime getDataModificacao() {
 		return dataModificacao;
 	}
 
-	public void setDataModificacao(LocalDate dataModificacao) {
+	public void setDataModificacao(LocalDateTime dataModificacao) {
 		this.dataModificacao = dataModificacao;
 	}
 

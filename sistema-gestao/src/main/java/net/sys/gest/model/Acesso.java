@@ -1,5 +1,7 @@
 package net.sys.gest.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -27,6 +29,11 @@ public class Acesso implements GrantedAuthority {
 	@Column(name="descricao", nullable = false)
 	private String descricao;
 	
+	@Column(name="data_criacao")
+	private LocalDateTime dataCriacao;
+	
+	@Column(name="data_modificacao")
+	private LocalDateTime dataModificacao;
 	
 	public long getId() {
 		return id;
@@ -71,6 +78,26 @@ public class Acesso implements GrantedAuthority {
 	public String getAuthority() {
 		 
 		return this.descricao;
+	}
+
+
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
+
+
+	public void setDataCriacao(LocalDateTime dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+
+	public LocalDateTime getDataModificacao() {
+		return dataModificacao;
+	}
+
+
+	public void setDataModificacao(LocalDateTime dataModificacao) {
+		this.dataModificacao = dataModificacao;
 	}
 	
 	

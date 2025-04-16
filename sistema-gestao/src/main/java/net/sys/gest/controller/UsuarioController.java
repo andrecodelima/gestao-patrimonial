@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.sys.gest.model.LoginRequest;
 import net.sys.gest.model.Usuario;
+import net.sys.gest.service.AuthenticationServiceInterface;
 import net.sys.gest.service.UsuarioDetailsServiceImplementation;
 import net.sys.gest.service.UsuarioServiceInterface;
 
@@ -28,10 +29,13 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioServiceInterface usuarioServiceInterface;
 	
+	@Autowired
+	private AuthenticationServiceInterface authenticationServiceInterface;
+	
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
 	    try {
-	        Usuario usuario = usuarioServiceInterface.autenticaUsuario(loginRequest.getLogin(), loginRequest.getSenha());
+	        Usuario usuario = authenticationServiceInterface.autenticaUsuario(loginRequest.getLogin(), loginRequest.getSenha());
 	        // Retorne um objeto JSON em vez de uma string simples
 	        Map<String, String> response = new HashMap<>();
 	        response.put("message", "Login realizado com sucesso para o usuário: " + usuario.getLogin());
