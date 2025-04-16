@@ -9,4 +9,7 @@ import { PrimaryInputComponent } from "../../components/primary-input/primary-in
 })
 export class LoginComponent {
 
+  title:string = "Login"
+  forgetpass:string = "Esqueceu sua senha?"
+  btnText:string = "Login"
 }
