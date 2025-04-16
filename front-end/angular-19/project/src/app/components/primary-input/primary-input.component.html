@@ -1,6 +1,6 @@
 
 <div class="section-login">
-  <mat-label>E-mail</mat-label>
+  <!-- <mat-label>E-mail</mat-label>
   <div class="section-login__user">
     <mat-form-field appearance="outline">
       <input matInput placeholder="Digite seu e-email">
@@ -23,6 +23,22 @@
         <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
+
+   </div> -->
+
+   <div class="section-login__user">
+    <label for="">E-mail</label>
+      <p-iconfield  >
+          <p-inputicon class="pi pi-user"/>
+          <input pInputText id="username"  autocomplete="off" placeholder="Digite seu e-email"/>
+      </p-iconfield>
    </div>
 
+   <div class="section-login__password">
+    <label for="">Password</label>
+      <p-iconfield>
+          <p-inputicon class="pi pi-lock" />
+          <input pInputText id="username"  autocomplete="off" placeholder="Insira sua senha" />
+      </p-iconfield>
+   </div>
 </div>
